@@ -2,7 +2,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "Tensamin Docs",
-  description: "The Official Documentation for Tensamin",
+  description: "The official Documentation for Tensamin",
 };
 
 export default function RootLayout({ children }) {
