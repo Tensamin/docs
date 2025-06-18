@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
 function downloadFile(url, filename) {
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
-    link.download = filename || 'download';
-    link.style.display = 'none';
+    link.download = filename || "download";
+    link.style.display = "none";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -28,35 +28,32 @@ export default function Home() {
                     <lo className="list-decimal">
                         <li>Execute tensamin.p7b</li>
                         <li>Expand the folder and select Certificates</li>
-                        <li>For both the certificates double click them and choose 'Install Certificate'</li>
-                        <li>Select 'Local Machine' as the certificate store location (unless you don't have administrative rights)</li>
-                        <li>For 'Place all certificates in the following store' click 'Browse' and select 'Trusted Root Certification Authorities'</li>
+                        <li>For both the certificates double click them and choose &apos;Install Certificate&apos;</li>
+                        <li>Select &apos;Local Machine&apos; as the certificate store location (unless you don&apos;t have administrative rights)</li>
+                        <li>For &apos;Place all certificates in the following store&apos; click &apos;Browse&apos; and select &apos;Trusted Root Certification Authorities&apos;</li>
                     </lo>
                     <Badge variant="secondary">Manual (p12)</Badge>
                     <lo className="list-decimal">
                         <li>Execute tensamin.p12</li>
-                        <li>Select 'Local Machine' as the certificate store location (unless you don't have administrative rights)</li>
+                        <li>Select &apos;Local Machine&apos; as the certificate store location (unless you don&apos;t have administrative rights)</li>
                         <li>Leave password field empty</li>
-                        <li>For 'Place all certificates in the following store' click 'Browse' and select 'Trusted Root Certification Authorities'</li>
+                        <li>For &apos;Place all certificates in the following store&apos; click &apos;Browse&apos; and select &apos;Trusted Root Certification Authorities&apos;</li>
                     </lo>
                     <Badge variant="secondary">Automated</Badge>
                     <CodeBlock style="materialDark" language="cmd" code="certutil.exe -addstore root tensamin.cer" />
                 </CardContent>
                 <CardFooter className="gap-5">
                     <Button
-                        className=""
                         onClick={() => {
                             downloadFile("/cert/p7b", "tensamin.p7b")
                         }}
                     >Get tensamin.p7b</Button>
                     <Button
-                        className=""
                         onClick={() => {
                             downloadFile("/cert/p12", "tensamin.p12")
                         }}
                     >Get tensamin.p12</Button>
                     <Button
-                        className=""
                         onClick={() => {
                             downloadFile("/cert/cer", "tensamin.cer")
                         }}
@@ -81,7 +78,6 @@ sudo update-ca-trust`} />
                 </CardContent>
                 <CardFooter>
                     <Button
-                        className=""
                         onClick={() => {
                             downloadFile("/cert/pem", "tensamin.pem")
                         }}
@@ -98,8 +94,8 @@ sudo update-ca-trust`} />
                     <Badge variant="secondary">Manual</Badge>
                     <lo className="list-decimal">
                         <li>Execute tensamin.pem</li>
-                        <li>Find 'Tensamin' and double click it</li>
-                        <li>Make the 'Secure Socket Layer' always trust the certificate</li>
+                        <li>Find &apos;Tensamin&apos; and double click it</li>
+                        <li>Make the &apos;Secure Socket Layer&apos; always trust the certificate</li>
                     </lo>
                     <Badge variant="secondary">Automated</Badge>
                     <CodeBlock style="materialDark" language="cmd" code="sudo security add-trusted-cert -d -p ssl -p basic -k /Library/Keychains/System.keychain tensamin.pem" />
@@ -123,13 +119,12 @@ sudo update-ca-trust`} />
                     <lo className="list-decimal">
                         <li>Using Safari download the certificate</li>
                         <li>Open the settings app</li>
-                        <li>Open 'General / VPN & Device Management' and install Tensamin</li>
-                        <li>Then open 'General / About / Certificate Trust Settings' and enable Tensamin</li>
+                        <li>Open &apos;General / VPN & Device Management&apos; and install Tensamin</li>
+                        <li>Then open &apos;General / About / Certificate Trust Settings&apos; and enable Tensamin</li>
                     </lo>
                 </CardContent>
                 <CardFooter>
                     <Button
-                        className=""
                         onClick={() => {
                             downloadFile("/cert/pem", "tensamin.pem")
                         }}
@@ -145,14 +140,13 @@ sudo update-ca-trust`} />
                 <CardContent>
                     <lo className="list-decimal">
                         <li>Open tensamin.cer</li>
-                        <li>Use 'Tensamin' as the certificate name</li>
-                        <li>Select 'VPN and Apps' for the certificate use</li>
-                        <li>Click 'OK'</li>
+                        <li>Use &apos;Tensamin&apos; as the certificate name</li>
+                        <li>Select &apos;VPN and Apps&apos; for the certificate use</li>
+                        <li>Click &apos;OK&apos;</li>
                     </lo>
                 </CardContent>
                 <CardFooter>
                     <Button
-                        className=""
                         onClick={() => {
                             downloadFile("/cert/cer", "tensamin.cer")
                         }}
@@ -170,19 +164,16 @@ sudo update-ca-trust`} />
                 </CardContent>
                 <CardFooter className="gap-5">
                     <Button
-                        className=""
                         onClick={() => {
                             downloadFile("/cert/pem", "tensamin.pem")
                         }}
                     >Get tensamin.pem</Button>
                     <Button
-                        className=""
                         onClick={() => {
                             downloadFile("/cert/p12", "tensamin.p12")
                         }}
                     >Get tensamin.p12</Button>
                     <Button
-                        className=""
                         onClick={() => {
                             downloadFile("/cert/cer", "tensamin.cer")
                         }}
