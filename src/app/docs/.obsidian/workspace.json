@@ -11,10 +11,14 @@
             "id": "f10bb7ee357b148f",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "omikron/page.mdx",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "page"
             }
           }
         ]
@@ -165,6 +169,8 @@
   "active": "f10bb7ee357b148f",
   "lastOpenFiles": [
     "auth-server/page.mdx",
+    "omikron/page.mdx",
+    "omikron",
     "Untitled.md",
     "auth-server",
     "test.md"
