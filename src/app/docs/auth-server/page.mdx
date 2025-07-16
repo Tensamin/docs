@@ -1,0 +1,105 @@
+# Auth Server
+
+#### GET `/api/register/init`
+```json
+{
+  "type": "message",
+  "log": {
+    "message": "Started user registration progress",
+    "log_level": 0
+  },
+  "data": {
+    "uuid": "<uuid>"
+  }
+}
+```
+
+
+
+#### POST `/api/register/complete`
+`REQ`
+```json
+{
+  "uuid": "",
+  "public_key": "",
+  "private_key_hash": "",
+  "username": ""
+}
+```
+`RES`
+```json
+{
+  "type": "message",
+  "log": {
+    "message": "Created User: <uuid>",
+    "log_level": 0
+  },
+  "data": {}
+}
+```
+
+
+
+#### GET `/api/<uuid>/username`
+```json
+{
+    "type": "message",
+    "log": {
+        "message": "Get username for <uuid>: <username>",
+        "log_level": 0
+    },
+    "data": {
+        "username": "<username>"
+    }
+}
+```
+
+
+
+#### GET `/api/<uuid>/public-key`
+```json
+{
+    "type": "message",
+    "log": {
+        "message": "Get public_key for <uuid>: <public_key>",
+        "log_level": 0
+    },
+    "data": {
+        "public_key": "<public_key>"
+    }
+}
+```
+
+
+
+#### GET `/api/<uuid>/iota-uuid`
+**Header:** `Authorization <omikron-uuid>`
+```json
+{
+    "type": "message",
+    "log": {
+        "message": "Get iota_uuid for <uuid>: <iota_uuid>",
+        "log_level": 0
+    },
+    "data": {
+        "iota_uuid": "<iota_uuid>"
+    }
+}
+```
+
+
+
+#### GET `/api/<uuid>/created-at`
+```json
+{
+    "type": "message",
+    "log": {
+        "message": "Get created_at for <uuid>: <created_at>",
+        "log_level": 0
+    },
+    "data": {
+        "created_at": "<created_at>"
+    }
+}
+```
+

@@ -1,4 +1,11 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+import nextra from 'nextra'
 
-export default nextConfig;
+// Nextra Config
+const withNextra = nextra({
+    search: { codeblocks: false }
+})
+
+// Normal NextJS Config
+export default withNextra({
+
+})
