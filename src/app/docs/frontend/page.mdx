@@ -1,0 +1,23 @@
+# Frontend
+
+#### Data sent to Frontend when requesting message chunks:
+```json
+{
+  "id": "",
+  "type": "message_chunk",
+  "log": {
+    "message": "Sent Message Chunk",
+    "log_level": 0
+  },
+  "data": {
+    "chunk_time": 1800000, // 30 Min in Ms
+    "messages": [
+      {
+        "time": 6969696969,
+        "content": "<encrypted message>",
+        "sender": "<senders uuid>"
+      }
+    ]
+  }
+}
+```
