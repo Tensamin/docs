@@ -1,0 +1,141 @@
+# Iota
+All messages to the `Iota` are either from the `Omikron` directly, from a `Client` or another `Iota` trying to message a `User` on the `Iota`.
+All messages will be marked with a `sender_id` this will be added on the `Omikron`.
+It is important to note that the `Iota ID` is not shared with others as it is the security between
+In the response the `sender_id` & `receiver_id` must be swapped as sender.
+When a message comes from an iota without a `sender-id` that the iota has access to or is designated for the client (`33333333-3333-3333-3333-333333333333`) the message will not be send.
+## Client
+### Messages
+##### `REQ:`
+```json
+{
+	"sender_id": "<user-id>",
+	"receiver_id": "<user-id>",
+	
+	"type":"message",
+	"id": "<uuid>",
+	"log": {
+		"message": "Message from user",
+		"log_level": 0
+	},
+	"data": {
+		"message_content": "<message>"
+	}
+}
+```
+##### `RES:`
+```json
+{
+	"sender_id": "<user-id>",
+	"receiver_id": "<user-id>",
+	
+	"type":"message_response",
+	"id": "<uuid>",
+	"log": {
+		"message": "Message from user received",
+		"log_level": 0
+	},
+	"data": {}
+}
+```
+
+### Get a message
+##### `REQ:`
+```json
+{
+	"sender_id": "<user-id>",
+	
+	"type":"message_get",
+	"id": "<uuid>",
+	"log": {
+		"message": "User requesting message Chunk",
+		"log_level": 0
+	},
+	"data": {
+		"chat_partner_id": "<user-id>",
+		"get_time": long,
+		"get_variant": chunk_variant
+	}
+}
+```
+The chunk_variant can be:
+```json
+previous_to_ms, // PREVIOUS CHUNK TO defined time in MILLIS
+previous_to_u,  // PREVIOUS CHUNK TO defined time in units (half hours)
+at_ms,          // CHUNK AT time in MILLIS
+at_u,           // CHUNK AT time in units (half hours)
+previous;       // PREVIOUS CHUNK to current moment
+```
+Units are half hours you can get the current unit by getting the UNIX timestamp and dividing it by
+`1000` to get seconds
+`  60` to get minutes
+`  30` to get half hours
+so
+```typescript
+var current_unit: Int = current_unix / 1000 / 60 / 30
+```
+##### `RES:`
+```json
+{
+	"sender_id": "<iota-id>",
+	
+	"type":"message_chunk",
+	"id": "<uuid>",
+	"log": {
+		"message": "Message chunk loaded",
+		"log_level": 0
+	},
+	"data": {
+		"get_time": long,                       // in units (half hours)
+		"chat_partner_id": "<user-id>"
+		"messages": [
+			{
+				"send_time": long               // in current millis
+				"message_content": "<enc_msg>",
+				"sender_is_me": boolean 
+			},
+			{
+				"send_time": long               // in current millis
+				"message_content": "<enc_msg>",
+				"sender_is_me": boolean 
+			}
+		]
+	}
+}
+```
+
+## Other Iota
+### Messages
+Same as with the 
+##### `REQ:`
+```json
+{
+	"sender_id": "<user_id>",
+	"receiver_id": "<user_id>",
+	
+	"type":"message",
+	"id": "<uuid>",
+	"log": {
+		"message": "Message from other user",
+		"log_level": 0
+	},
+	"data": {
+		"message_content": "<message>"
+	}
+}
+```
+##### `REQ:`
+```json
+{
+	"sender_id": "<user_id>",
+	"receiver_id": "<user_id>",
+	
+	"type":"message",
+	"id": "<uuid>",
+	"log": {
+		"message": "Message from other user received",
+		"log_level": 0
+	},
+	"data": {}
+}
+```
