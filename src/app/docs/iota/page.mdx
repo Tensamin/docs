@@ -4,8 +4,8 @@ All messages will be marked with a `sender_id` this will be added on the `Omikro
 It is important to note that the `Iota ID` is not shared with others as it is the security between
 In the response the `sender_id` & `receiver_id` must be swapped as sender.
 When a message comes from an iota without a `sender-id` that the iota has access to or is designated for the client (`33333333-3333-3333-3333-333333333333`) the message will not be send.
-## Client
-### Messages
+## Messages
+### Client messages someone
 ##### `REQ:`
 ```json
 {
@@ -39,7 +39,7 @@ When a message comes from an iota without a `sender-id` that the iota has access
 }
 ```
 
-### Get a message
+### Client loads messages
 ##### `REQ:`
 ```json
 {
@@ -104,9 +104,7 @@ var current_unit: Int = current_unix / 1000 / 60 / 30
 }
 ```
 
-## Other Iota
-### Messages
-Same as with the 
+### Send a message to other Iota
 ##### `REQ:`
 ```json
 {
@@ -139,3 +137,98 @@ Same as with the
 	"data": {}
 }
 ```
+
+## Friends
+### User sends friend request to other User
+A Friend request should be send with the first message, it should contain a target user, a `shared secret` that is encrypted with the users own `public key` as well as another one encrypted with the target users `public key` to the later a signature should be added so it can be verified.
+
+It's important to remember that the client might have to wait a long time for a reply if the data has been sent or not, because the data has to travel far.
+
+### Client -> Iota
+#### `REQ:`
+```json
+{
+	"sender_id": "<user_id>",  // handeled by Omikron
+	"id": "<message_id>",
+	"type": "friend_request",
+	"log": {
+		"log_level": 1,
+		"message": "<user_id> sent <user_id> a friend request"
+	},
+	"data": {
+		"receiver_id": "<uuid>",
+		"shared_secret_own": "",
+		"shared_secret_other": "",
+		"shared_secret_sign": "",
+		
+	}
+}
+```
+
+#### `RES:`
+```json
+{
+	"receiver_id": "<user_id>",   // handeled by Omikron
+	"id": "<message_id>",
+	"type": "friend_request_response",
+	"log": {
+		"log_level": 0,
+		"message": "Friend request was sent"
+	},
+	"data": {}
+}
+```
+
+#### Possible errors:
+`Not a valid UUID provided` level: `2`
+`These users allready have a shared secret` level: `0`
+`The target Iota isn't responding` level: `0`
+`The target Iota isn't responding correctly` level: `0`
+###### -> From Omega:
+`The user you are searching has no online iota` level: `1`
+`The user you are searching has no iota` level: `2`
+`The user you are searching does not exist` level: `2`
+`Not a valid UUID provided` level: `2`
+`The omikron with the users iota is full try again later` level: `0`
+
+### Iota -> Iota
+#### `REQ:`
+```json
+{
+	"sender_id": "<user_id>",    // checked by Omikron
+	"receiver_id": "<user_id>",  // handeled by Omikron
+	"id": "<message_id>",
+	"type": "friend_request",
+	"log": {
+		"log_level": 1,
+		"message": "<user_id> sent <user_id> a friend request"
+	},
+	"data": {
+		"shared_secret_own": "",
+		"shared_secret_other": "",
+		"shared_secret_sign": ""
+	}
+}
+```
+
+#### `RES:`
+```json
+{
+	"sender_id": "<user_id>",    // checked by Omikron
+	"receiver_id": "<user_id>",  // handeled by Omikron
+	"id": "<message_id>",
+	"type": "friend_request_response",
+	"log": {
+		"log_level": 0,
+		"message": "Friend request was received"
+	},
+	"data": {}
+}
+```
+
+#### Possible errors:
+###### -> From Omikron:
+`Users Iota is not connected` level: `1`
+##### -> From Iota:
+`User does not accept friend request` level: `0`
+

@@ -50,6 +50,8 @@ Retrieves the `Omikron` node currently associated with the `Iota` linked to the 
 	}
 }
 ```
+#### Possible errors:
+`No Omikron found` level: `2`
 #### GET `/api/find_omikron/<user-id>`
 Find the `Omikron` that the `Iota` of a `User` is connected to.
 The client can input its `user-id` to find the `Omikron` where its `Iota` is connected to .
@@ -66,3 +68,9 @@ The client can input its `user-id` to find the `Omikron` where its `Iota` is con
 	}
 }
 ```
+#### Possible errors:
+`The user you are searching has no online iota` level: `1`
+`The user you are searching has no iota` level: `2`
+`The user you are searching does not exist` level: `2`
+`Not a valid UUID provided` level: `2`
+`The omikron with the users iota is full try again later` level: `0`
