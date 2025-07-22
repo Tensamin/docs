@@ -122,7 +122,7 @@ var current_unit: Int = current_unix / 1000 / 60 / 30
 	}
 }
 ```
-##### `REQ:`
+##### `RES:`
 ```json
 {
 	"sender_id": "<user_id>",
@@ -150,7 +150,7 @@ It's important to remember that the client might have to wait a long time for a 
 {
 	"sender_id": "<user_id>",  // handeled by Omikron
 	"id": "<message_id>",
-	"type": "friend_request",
+	"type": "shared_secret_set",
 	"log": {
 		"log_level": 1,
 		"message": "<user_id> sent <user_id> a friend request"
@@ -170,10 +170,10 @@ It's important to remember that the client might have to wait a long time for a 
 {
 	"receiver_id": "<user_id>",   // handeled by Omikron
 	"id": "<message_id>",
-	"type": "friend_request_response",
+	"type": "shared_secret_return",
 	"log": {
 		"log_level": 0,
-		"message": "Friend request was sent"
+		"message": "Friend request was received"
 	},
 	"data": {}
 }
@@ -198,7 +198,7 @@ It's important to remember that the client might have to wait a long time for a 
 	"sender_id": "<user_id>",    // checked by Omikron
 	"receiver_id": "<user_id>",  // handeled by Omikron
 	"id": "<message_id>",
-	"type": "friend_request",
+	"type": "shared_secret_set",
 	"log": {
 		"log_level": 1,
 		"message": "<user_id> sent <user_id> a friend request"
@@ -217,7 +217,7 @@ It's important to remember that the client might have to wait a long time for a 
 	"sender_id": "<user_id>",    // checked by Omikron
 	"receiver_id": "<user_id>",  // handeled by Omikron
 	"id": "<message_id>",
-	"type": "friend_request_response",
+	"type": "shared_secret_return",
 	"log": {
 		"log_level": 0,
 		"message": "Friend request was received"
@@ -232,3 +232,43 @@ It's important to remember that the client might have to wait a long time for a 
 ##### -> From Iota:
 `User does not accept friend request` level: `0`
 
+
+### Client getting friends
+#### `REQ:`
+```json
+{
+	"sender_id": "<user_id>",  // handeled by Omikron
+	"id": "<message_id>",
+	"type": "get_chats",
+	"log": {
+		"log_level": 1,
+		"message": "<user_id> sent <user_id> a friend request"
+	},
+	"data": {}
+}
+```
+
+#### `RES:`
+```json
+{
+	"receiver_id": "<user_id>",   // needed by Omikron
+	"id": "<message_id>",
+	"type": "get_chats",
+	"log": {
+		"log_level": 0,
+		"message": "all your chats"
+	},
+	"data": {
+		"user_ids": [
+			{
+				"user_id": "<uuid>",
+				"last_message_at": unixTimestamp
+			},
+			{
+				"user_id": "<uuid>",
+				"last_message_at": unixTimestamp
+			}
+		]
+	}
+}
+```
