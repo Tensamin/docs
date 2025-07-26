@@ -64,7 +64,7 @@ previous_to_ms, // PREVIOUS CHUNK TO defined time in MILLIS
 previous_to_u,  // PREVIOUS CHUNK TO defined time in units (half hours)
 at_ms,          // CHUNK AT time in MILLIS
 at_u,           // CHUNK AT time in units (half hours)
-previous;       // PREVIOUS CHUNK to current moment
+previous;       // PREVIOUS CHUNK to current moment (Last chunk)
 ```
 Units are half hours you can get the current unit by getting the UNIX timestamp and dividing it by
 `1000` to get seconds
@@ -87,7 +87,6 @@ var current_unit: Int = current_unix / 1000 / 60 / 30
 	},
 	"data": {
 		"get_time": long,                       // in units (half hours)
-		"chat_partner_id": "<user-id>"
 		"messages": [
 			{
 				"send_time": long               // in current millis
@@ -239,10 +238,10 @@ It's important to remember that the client might have to wait a long time for a 
 {
 	"sender_id": "<user_id>",  // handeled by Omikron
 	"id": "<message_id>",
-	"type": "get_chats",
+	"type": "shared_secret_get",
 	"log": {
 		"log_level": 1,
-		"message": "<user_id> sent <user_id> a friend request"
+		"message": "<user_id> gets <user_id>'s shared secret "
 	},
 	"data": {}
 }
@@ -253,10 +252,10 @@ It's important to remember that the client might have to wait a long time for a 
 {
 	"receiver_id": "<user_id>",   // needed by Omikron
 	"id": "<message_id>",
-	"type": "get_chats",
+	"type": "shared_secret_return",
 	"log": {
 		"log_level": 0,
-		"message": "all your chats"
+		"message": "the shared secret"
 	},
 	"data": {
 		"user_ids": [
@@ -269,6 +268,38 @@ It's important to remember that the client might have to wait a long time for a 
 				"last_message_at": unixTimestamp
 			}
 		]
+	}
+}
+```
+### Getting the shared secret of one friend
+#### `REQ:`
+```json
+{
+	"sender_id": "<user_id>",  // handeled by Omikron
+	"id": "<message_id>",
+	"type": "shared_secret_get",
+	"log": {
+		"log_level": 1,
+		"message": "<user_id> sent <user_id> a friend request"
+	},
+	"data": {
+		"user_id": "<other user id>"
+	}
+}
+```
+
+#### `RES:`
+```json
+{
+	"receiver_id": "<user_id>",   // needed by Omikron
+	"id": "<message_id>",
+	"type": "shared_secret_return",
+	"log": {
+		"log_level": 0,
+		"message": "shared secret"
+	},
+	"data": {
+		"shared_secret_own": "secret"
 	}
 }
 ```
