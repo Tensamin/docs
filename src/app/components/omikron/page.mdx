@@ -11,7 +11,7 @@ The `receiver_id` and `sender_id` of the `Omikron` server are `22222222-2222-222
 ## Identification
 Any message to the `Omikron` will be ignored until Identification.
 ### Iota
-#### REQ:
+#### `REQ:`
 ```json
 {
 	"id": "<uuid>",
@@ -26,7 +26,7 @@ Any message to the `Omikron` will be ignored until Identification.
 	}
 }
 ```
-#### RES:
+#### `RES:`
 ```json
 {
 	"id": "<uuid>",
@@ -44,7 +44,7 @@ Any message to the `Omikron` will be ignored until Identification.
 
 ---
 ### Client
-#### REQ:
+#### `REQ:`
 ```json
 {
 	"id": "<uuid>",
@@ -60,7 +60,7 @@ Any message to the `Omikron` will be ignored until Identification.
 	}
 }
 ```
-#### RES:
+#### `RES:`
 ```json
 {
 	"id": "<uuid>",
@@ -112,7 +112,7 @@ the `Pong` contains the last ping of the opposite.
 }
 ```
 ### Client
-#### REQ:
+#### `REQ:`
 ```json
 {
 	"id": "<uuid>",
@@ -126,7 +126,7 @@ the `Pong` contains the last ping of the opposite.
 	}
 }
 ```
-#### RES:
+#### `RES:`
 ```json
 {
 	"id": "<uuid>",
@@ -137,6 +137,102 @@ the `Pong` contains the last ping of the opposite.
 	},
 	"data": {  
 		"last_ping": long
+	}
+}
+```
+
+
+# Calling
+## Identification
+#### `REQ:`
+```json
+{
+	"id": "<uuid>",
+	"type": "identification",
+	"log": {
+	    "message": "Client identifying",
+		"log_level": 0
+	},
+	"data": {
+		"call_id": "<call-id>",
+		"user_id": "<user-id>",
+		"private_key_hash": "<hex-sha265>"
+	}
+}
+```
+#### `RES:` 
+```json
+{
+	"id": "<uuid>",
+	"type": "identification_response",
+	"log": {
+	    "message": "Client identified",
+		"log_level": 0
+	},
+	"data": {  
+		"acceppted": boolean,
+		"user_ids"{
+			"<user_id>": call_state,
+			"<user_id>": call_state
+		}
+	}
+}
+```
+A call state can be
+```typescript
+active,
+streaming,
+muted,
+deafed
+```
+## When someone joins the call
+##### `MSG:` Omikron -> all users
+```json
+{
+	"id": "<uuid>",
+	"type": "client_connected",
+	"log": {
+		"message": "",
+		"log_level": 0
+	},
+	"data":{
+		"user_id": "<user_id>",
+		"call_state": call_state,
+		"user_state": user_state
+	}
+	
+}
+```
+### All messages
+## When someone changes their state
+##### `MSG:` -> Omikron
+```json
+{
+	"id": "<uuid>",
+	"type": "client_changed",
+	"log": {
+		"message": "",
+		"log_level": 0
+	},
+	"data":{
+		"call_state": call_state, // if a value is missing
+		"user_state": user_state  // it is not changed
+	}
+}
+```
+##### `MSG:` Omikron -> Other clients
+```json
+{
+	"id": "<uuid>",
+	"type": "client_changed",
+	"log": {
+		"message": "",
+		"log_level": 0
+	},
+	"data":{
+		"user_id": "<user_id>",
+		"call_state": call_state, // if a value is missing
+		"user_state": user_state  // it is not changed
 	}
 }
 ```
