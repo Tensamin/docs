@@ -76,7 +76,18 @@ By removing a user from a community you are removing the shared secret.
 	"type": "get_communities",
 	"log": {
 		"log_level": 0,
-		"message": "Client adding Community"
+		"message": "Client loading Communities"
+	},
+	"data": {}
+}
+```
+##### `RES:`
+```json
+{
+	"type": "add_community",
+	"log": {
+		"log_level": 0,
+		"message": "User Communities"
 	},
 	"data": {
 		"communities": [
@@ -93,19 +104,6 @@ By removing a user from a community you are removing the shared secret.
 				"community_titile": "enc_community_title",
 			}
 		]
-	}
-}
-```
-##### `RES:`
-```json
-{
-	"type": "add_community",
-	"log": {
-		"log_level": 0,
-		"message": "Client added Community"
-	},
-	"data": {
-		"shared_secret_other": "<enc_secret>"
 	}
 }
 ```
@@ -160,9 +158,18 @@ Create a Websocket
 						"codec": "voice",
 						"data": {
 							"active_users": {
-								"user_id": "<call_status>",
-								"user_id": "<call_status>",
-								"user_id": "<call_status>"
+								"user_id": {
+									"state": "<call_status>",
+									"streaming": boolean
+								},
+								"user_id": {
+									"state": "<call_status>",
+									"streaming": boolean
+								 },
+								 "user_id": {
+									"state": "<call_status>",
+									"streaming": boolean
+								 }
 							}
 						}
 					},
@@ -355,12 +362,38 @@ An example for using the `General` text Channel in the `General` category from t
 		"payload": {
 			"sender_id": "<uuid>",
 			"message": "<uuid>",
-			"send_time": "<uuid>",
+			"send_time": "<uuid>"
 		}
 	}
 }
 ```
-#### Voice channels
-###### im tired and i don't wanna :(/)
-(gonna do it tomorrow) NO GET BACK TO WORK
-(i won't)
+
+### Voice channels
+#### Updates
+##### `RES:`
+```json
+{
+	"type": "update",
+	"id": "<uuid>",
+	"log": {
+		"log_level": 0,
+		"message": "Text update"
+	},
+	"data": {
+		"codec": "voice", // optional
+		"name": "VC-1",
+		"path": "General",
+		"result": "user_changed",
+		"payload": {
+			"user_id": "<uuid>",
+			"state": "<user_state>",
+			"streaming": boolean
+		}
+	}
+}
+```
+
+#### Connecting
+Connect to the STUN.
+Connect to the again on: `ws[s]://<ip>:<port>/ws/calls/`
+Proceed with default calling procedures. There is no inviting WEWO.
