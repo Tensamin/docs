@@ -37,11 +37,11 @@
 }
 ```
 
-#### POST `/api/change/{ username, display, avatar, about, status }/<uuid>`
+#### POST `/api/change/[ username | display | avatar | about | status ]/<uuid>`
 `REQ`
 ```json
 {
-	"{ username, display, avatar, about, status }": "<{ username, display, avatar, about, status }>",
+	[ "username" | "display" |  "avatar" | "about" | "status" ]: [ "<username>" | "<display>" |  "<avatar>" | "<about>" | "<status>" ],
 	"private_key_hash": "<sha256 private key hash>"
 }
 ```
