@@ -52,8 +52,7 @@ After registration log in immediately to complete.
 	"data": {
 		"community_address": "enc_community_address",
 		"community_secret": "enc_community_secret",
-		"community_pfp": "enc_community_base_64_pfp",
-		"community_titile": "enc_community_title",
+		"community_title": "enc_community_title"
 	}
 }
 ```
@@ -65,9 +64,7 @@ After registration log in immediately to complete.
 		"log_level": 1,
 		"message": "Client added Community"
 	},
-	"data": {
-		"shared_secret_other": "<enc_secret>"
-	}
+	"data": {}
 }
 ```
 ### Client loading communities from their Iota
@@ -85,7 +82,7 @@ After registration log in immediately to complete.
 ##### `RES:`
 ```json
 {
-	"type": "add_community",
+	"type": "get_community",
 	"log": {
 		"log_level": 0,
 		"message": "User Communities"
@@ -95,14 +92,12 @@ After registration log in immediately to complete.
 			{
 				"community_address": "enc_community_address",
 				"community_secret": "enc_community_secret",
-				"community_pfp": "enc_community_base_64_pfp",
-				"community_titile": "enc_community_title",
+				"community_title": "enc_community_title"
 			},
 			{
 				"community_address": "enc_community_address",
 				"community_secret": "enc_community_secret",
-				"community_pfp": "enc_community_base_64_pfp",
-				"community_titile": "enc_community_title",
+				"community_title": "enc_community_title"
 			}
 		]
 	}
