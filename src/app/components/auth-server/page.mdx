@@ -56,6 +56,45 @@
 }
 ```
 
+##### POST `/api/change/iota-id/<uuid>`
+`REQ`
+```json
+{
+	"iota_id": "<uuid>",
+	"reset_token": "<uuid>.<uuid>.<uuid>"
+}
+```
+`RES`
+```json
+{
+	"type": "success",
+	"log": {
+		"message": "Changed iota id for <uuid>",
+		"log_level": 0
+	}
+}
+```
+
+##### POST `/api/change/keys/<uuid>`
+`REQ`
+```json
+{
+	"private_key_hash": "<sha256 private key hash>",
+	"public_key": "<base64 public key>",
+	"reset_token": "<uuid>.<uuid>.<uuid>"
+}
+```
+`RES`
+```json
+{
+	"type": "success",
+	"log": {
+		"message": "Changed keys for <uuid>",
+		"log_level": 0
+	}
+}
+```
+
 ##### POST `/api/register/options/<uuid>`
 `REQ`
 ```json
