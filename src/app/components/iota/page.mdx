@@ -1,7 +1,7 @@
 # Iota
 All messages to the `Iota` are either from the `Omikron` directly, from a `Client` or another `Iota` trying to message a `User` on the `Iota`.
 All messages will be marked with a `sender_id` this will be added on the `Omikron`.
-It is important to note that the `Iota ID` is not shared with others as it is the security between
+It is important to note that the `Iota ID` is not shared with others as it is what verifies the `Iota` users to Tensamin.
 In the response the `sender_id` & `receiver_id` must be swapped as sender.
 When a message comes from an iota without a `sender-id` that the iota has access to or is designated for the client (`33333333-3333-3333-3333-333333333333`) the message will not be send.
 ## Messages
@@ -122,10 +122,7 @@ When a message comes from an iota without a `sender-id` that the iota has access
 
 ## Friends
 ### User sends friend request to other User
-A Friend request should be send with the first message, it should contain a target user, a `shared secret` that is encrypted with the users own `public key` as well as another one encrypted with the target users `public key` to the later a signature should be added so it can be verified.
-
-It's important to remember that the client might have to wait a long time for a reply if the data has been sent or not, because the data has to travel far.
-
+A friend request should be send with the first message, it should contain a target user, a `shared secret` that is encrypted with the users own `public key` as well as another one encrypted with the target users `public key` to the later a signature should be added so it can be verified.
 ### Client -> Iota
 #### `REQ:`
 ```json
@@ -167,11 +164,11 @@ It's important to remember that the client might have to wait a long time for a 
 `The target Iota isn't responding` level: `0`
 `The target Iota isn't responding correctly` level: `0`
 ###### -> From Omega:
-`The user you are searching has no online iota` level: `1`
-`The user you are searching has no iota` level: `2`
+`The user you are searching has no online Iota` level: `1`
+`The user you are searching has no Iota` level: `2`
 `The user you are searching does not exist` level: `2`
 `Not a valid UUID provided` level: `2`
-`The omikron with the users iota is full try again later` level: `0`
+`The omikron with the users Iota is full try again later` level: `0`
 
 ### Iota -> Iota
 #### `REQ:`
