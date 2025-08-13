@@ -41,7 +41,7 @@
 `REQ`
 ```json
 {
-	[ "username" | "display" |  "avatar" | "about" | "status" ]: [ "<username>" | "<display>" |  "<avatar>" | "<about>" | "<status>" ],
+	[ "username" | "display" | "avatar" | "about" | "status" ]: [ "<username>" | "<display>" |  "<avatar>" | "<about>" | "<status>" ],
 	"private_key_hash": "<sha256 private key hash>"
 }
 ```
@@ -50,7 +50,7 @@
 {
 	"type": "success",
 	"log": {
-		"message": "Changed username for <uuid>",
+		"message": "Changed [ username | display | avatar | about | status ] for <uuid>",
 		"log_level": 0
 	}
 }
@@ -61,8 +61,8 @@
 ```json
 {
 	"iota_id": "<uuid>",
-	"reset_token": "<uuid>.<uuid>.<uuid>",
-	"new_token": "<uuid>.<uuid>.<uuid>"
+	"reset_token": "<base64 random bytes>",
+	"new_token": "<base64 random bytes>"
 }
 ```
 `RES`
@@ -82,8 +82,8 @@
 {
 	"private_key_hash": "<sha256 private key hash>",
 	"public_key": "<base64 public key>",
-	"reset_token": "<uuid>.<uuid>.<uuid>",
-	"new_token": "<uuid>.<uuid>.<uuid>"
+	"reset_token": "<base64 random bytes>",
+	"new_token": "<base64 random bytes>"
 }
 ```
 `RES`
@@ -113,7 +113,7 @@
 		"log_level": 2
 	},
 	"data": {
-		"options": "idk yet",
+		"options": "<json>",
 		"salt": "<base64 salt>"
 	}
 }
@@ -147,9 +147,9 @@
 		"log_level": 2
 	},
 	"data": {
-		"options": "idk yet",
+		"options": "<json>",
 		"salt": "<base64 salt>",
-		"credential_id": "idk yet prob int"
+		"credential_id": "<base64 string>"
 	}
 }
 ```
@@ -158,7 +158,7 @@
 `REQ`
 ```json
 {
-	"attestation": "idk yet"
+	"attestation": "<json>"
 }
 ```
 `RES`
