@@ -211,6 +211,25 @@ The user creation process timeouts after 1 hour.
 }
 ```
 
+##### POST `/api/delete/<uuid>`
+`REQ`
+```json
+{
+	"uuid": "",
+	"reset_token": ""
+}
+```
+`RES`
+```json
+{
+	"type": "success",
+	"log": {
+		"message": "Deleted User: <uuid>",
+		"log_level": 0
+	}
+}
+```
+
 ## Omikron Endpoints
 ##### GET `/api/get/private-key-hash/<uuid>`
 **Header:** `Authorization <omikron uuid>`
