@@ -1,5 +1,5 @@
 ---
-title: Iota
+title: Endpoints
 ---
 All messages to the `Iota` are either from the `Omikron` directly, from a `Client` or another `Iota` trying to message a `User` on the `Iota`.
 All messages will be marked with a `sender_id` this will be added on the `Omikron`.
