@@ -54,7 +54,8 @@ After registration log in immediately to complete.
 	"data": {
 		"community_address": "enc_community_address",
 		"community_secret": "enc_community_secret",
-		"community_title": "enc_community_title"
+		"community_title": "enc_community_title",
+		"position": "x.y.z"
 	}
 }
 ```
@@ -94,12 +95,14 @@ After registration log in immediately to complete.
 			{
 				"community_address": "enc_community_address",
 				"community_secret": "enc_community_secret",
-				"community_title": "enc_community_title"
+				"community_title": "enc_community_title",
+				"position": "x.y.z" // Frontend defines folders etc
 			},
 			{
 				"community_address": "enc_community_address",
 				"community_secret": "enc_community_secret",
-				"community_title": "enc_community_title"
+				"community_title": "enc_community_title",
+				"position": "x.y.z"
 			}
 		]
 	}
@@ -138,6 +141,7 @@ Create a Websocket
 					// Standart are Category, Textchat & VoiceChat
 				}
 			},
+			
 			// Examples
 			"Rules":{
 				"codec": "text",
