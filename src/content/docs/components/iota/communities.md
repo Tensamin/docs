@@ -13,35 +13,11 @@ A community stores it's joined users UUID's and a shared secret for each of them
 When joining a community an invite has to be created.
 This invite can be send to any user. It contains the communities IP & a shared secret.
 By removing a user from a community you are removing the shared secret.
+
+## Connecting
+Connect to a community on a websocket or websocket-secure on `ws[s]://[ip]:[port]`.
+Standard port of a community is 1984.
 ## Identification
-### Registering on a community
-After registration log in immediately to complete.
-##### `REQ:`
-```json
-{
-	"type": "register",
-	"log": {
-		"log_level": 1,
-		"message": "Client registering"
-	},
-	"data": {
-		"user_id": "<uuid>"
-	}
-}
-```
-##### `RES:`
-```json
-{
-	"type": "register",
-	"log": {
-		"log_level": 1,
-		"message": "Client registered"
-	},
-	"data": {
-		"shared_secret_other": "<enc_secret>"
-	}
-}
-```
 ### Client storing a community secret on their Iota
 ##### `REQ:`
 ```json
@@ -53,7 +29,6 @@ After registration log in immediately to complete.
 	},
 	"data": {
 		"community_address": "enc_community_address",
-		"community_secret": "enc_community_secret",
 		"community_title": "enc_community_title",
 		"position": "x.y.z"
 	}
@@ -94,13 +69,11 @@ After registration log in immediately to complete.
 		"communities": [
 			{
 				"community_address": "enc_community_address",
-				"community_secret": "enc_community_secret",
 				"community_title": "enc_community_title",
 				"position": "x.y.z" // Frontend defines folders etc
 			},
 			{
 				"community_address": "enc_community_address",
-				"community_secret": "enc_community_secret",
 				"community_title": "enc_community_title",
 				"position": "x.y.z"
 			}
@@ -119,18 +92,46 @@ Create a Websocket
 		"message": "Client signing in"
 	},
 	"data": {
-		"user_id": "<uuid>",
-		"shared_secret_own": "<string>" // not encrypted
+		"user_id": "<uuid>"
 	}
 }
 ```
 ##### `RES:`
 ```json
 {
+	"type": "challenge",
+	"log": {
+		"log_level": 1,
+		"message": "Solve this challenge to log in"
+	},
+	"data": {
+		"challenge": "",
+		"public_key": "<Base64>"
+		}
+	}
+}
+```
+The Client should solve the challenge. 
+```json
+{
+	"type": "challenge_response",
+	"log": {
+		"log_level": 1,
+		"message": "Solved challenge"
+	},
+	"data": {
+		
+		}
+	}
+}
+```
+Upon solving the challenge the client will be provided with comunity information.
+```json
+{
 	"type": "identification_response",
 	"log": {
 		"log_level": 1,
-		"message": "Client signed in"
+		"message": "Challenge solved you are logged in"
 	},
 	"data": {
 		"accepted": boolean, 
@@ -183,12 +184,10 @@ Create a Websocket
 					}
 				}
 			}
-			},
 		}
 	}
 }
 ```
-
 ## Using Channels
 As mods can create their own channel codecs browser-extensions could implement their own codec handling.
 ### Send something to a channel
