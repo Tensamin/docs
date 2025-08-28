@@ -18,7 +18,7 @@ By removing a user from a community you are removing the shared secret.
 Connect to a community on a websocket or websocket-secure on `ws[s]://[ip]:[port]`.
 Standard port of a community is 1984.
 ## Identification
-### Client storing a community secret on their Iota
+### Client storing a community on their Iota
 ##### `REQ:`
 ```json
 {
@@ -28,8 +28,8 @@ Standard port of a community is 1984.
 		"message": "Client adding Community"
 	},
 	"data": {
-		"community_address": "enc_community_address",
-		"community_title": "enc_community_title",
+		"community_address": "community_address",
+		"community_title": "community_title",
 		"position": "x.y.z"
 	}
 }
@@ -83,7 +83,7 @@ Standard port of a community is 1984.
 ```
 ### Logging into a community
 Create a Websocket
-##### `REQ:`
+##### `REQ (C2S):`
 ```json
 {
 	"type": "identification",
@@ -96,7 +96,7 @@ Create a Websocket
 	}
 }
 ```
-##### `RES:`
+###### `RES/REQ (S2C):`
 ```json
 {
 	"type": "challenge",
@@ -105,13 +105,15 @@ Create a Websocket
 		"message": "Solve this challenge to log in"
 	},
 	"data": {
-		"challenge": "",
-		"public_key": "<Base64>"
+		"challenge": "<Encrypted Base64 string>",
+		"public_key": "<Base64 publicKey>"
 		}
 	}
 }
 ```
 The Client should solve the challenge. 
+
+###### `RES/REQ (C2S):`
 ```json
 {
 	"type": "challenge_response",
@@ -120,12 +122,12 @@ The Client should solve the challenge.
 		"message": "Solved challenge"
 	},
 	"data": {
-		
-		}
+		"challenge": "<Solved Challenge | Decrypted Base64 string>"
 	}
 }
 ```
 Upon solving the challenge the client will be provided with comunity information.
+###### `RES (S2C):
 ```json
 {
 	"type": "identification_response",
@@ -271,7 +273,7 @@ An example for using the `General` text Channel in the `General` category from t
 		"codec": "text",
 		"name": "General",
 		"path": "General",
-		"result": "send_message",
+		"function": "send_message",
 		"payload": {
 			"message": "<message>"
 		}
@@ -311,7 +313,7 @@ An example for using the `General` text Channel in the `General` category from t
 		"codec": "text",
 		"name": "General",
 		"path": "General",
-		"result": "get_messages",
+		"function": "get_messages",
 		"payload": {
 			"loaded_messages": int,
 			"amount": int
@@ -371,6 +373,7 @@ An example for using the `General` text Channel in the `General` category from t
 
 ### Voice channels
 #### Updates
+An example for VC-1 in the General category.
 ##### `RES:`
 ```json
 {
@@ -393,8 +396,60 @@ An example for using the `General` text Channel in the `General` category from t
 	}
 }
 ```
-
+###### User States can be
+```json
+active,  
+muted,  
+deafed,  
+inactive
+```
 #### Connecting
 Connect to the STUN.
-Connect to the again on: `ws[s]://<ip>:<port>/ws/calls/`
-Proceed with default calling procedures. There is no inviting WEWO.
+Connect to the  community again on: `ws[s]://<ip>:<port>/ws/calls/`
+Log in on works by providing the `Call websocket` with the `path/name` & the `secret` of the call.
+##### Getting the secret & name from the call
+An example for VC-1 in the General category.
+###### `REQ:`
+```json
+{
+	"type": "function",
+	"id": "<uuid>",
+	"log": {
+		"log_level": 0,
+		"message": "Getting call"
+	},
+	"data": {
+		"codec": "voice", // optional
+		"name": "VC-1",
+		"path": "General",
+		"function": "",
+		"payload": {
+			"sender_id": "<uuid>",
+			"message": "<uuid>",
+			"send_time": "<uuid>"
+		}
+	}
+}
+``` 
+###### `RES:`
+```json
+{
+	"type": "function",
+	"id": "<uuid>",
+	"log": {
+		"log_level": 0,
+		"message": "Getting call"
+	},
+	"data": {
+		"codec": "voice", // optional
+		"name": "VC-1",
+		"path": "General",
+		"function": "",
+		"payload": {
+			"sender_id": "<uuid>",
+			"message": "<uuid>",
+			"send_time": "<uuid>"
+		}
+	}
+}
+```
