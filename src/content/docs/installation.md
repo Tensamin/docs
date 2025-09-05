@@ -1,6 +1,7 @@
 ---
 title: Installation
 ---
+
 ### You need to run the [Iota.jar](https://tensamin.methanium.net/release/Iota.jar).
 
 This is a Selfhosted server that you can run locally or on a server.
@@ -15,7 +16,9 @@ Usernames are unique! That means if a name is taken it's taken for good.
 With user creation a `<username>.pem` file is created next to the `.jar`, this file cannot be read by humans, it contains the private key of a user, the private key decrypts all the messages and configurations of the user on the `Iota`.
 
 On the [Tensamin website](https://tensamin.methanium.net) you can login using your username and the `<username>.pem`.
+
 ### You can also install the client for a better experience.
+
 Get it on:
 [Windows](https://tensamin.methanium.net/release/Tensamin.exe)
 [Debian (x64)](https://tensamin.methanium.net/release/Tensamin-amd64.deb)

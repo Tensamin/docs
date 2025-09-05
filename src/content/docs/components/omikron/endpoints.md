@@ -11,58 +11,69 @@ The `Omikron` will add a `sender_id` to Messages from `Client` to the `Iota`.
 The `receiver_id` and `sender_id` of the `Omikron` server are `22222222-2222-2222-2222-222222222222`.
 
 ## Identification
+
 Any message to the `Omikron` will be ignored until Identification.
+
 ### Iota
+
 #### `REQ:`
+
 ```json
 {
-	"id": "<uuid>",
-	"type": "identification",
-	"log": {
-	    "message": "Iota identifying",
-		"log_level": 0
-	},
-	"data": {  
-		"iota_id": "<uuid>", 
-		"user_ids": "<uuid>,<uuid>,<uuid>,<uuid>,<uuid>,"
-	}
+  "id": "<uuid>",
+  "type": "identification",
+  "log": {
+    "message": "Iota identifying",
+    "log_level": 0
+  },
+  "data": {
+    "iota_id": "<uuid>",
+    "user_ids": "<uuid>,<uuid>,<uuid>,<uuid>,<uuid>,"
+  }
 }
 ```
+
 #### `RES:`
+
 ```json
 {
-	"id": "<uuid>",
-	"type": "identification_response",
-	"log": {
-	    "message": "Iota identified",
-		"log_level": 0
-	},
-	"data": {
-		"accepted_profiles": "<uuid>,<uuid>,<uuid>,<uuid>,",
-		"denid_profiles": "<uuid>"
-	}
+  "id": "<uuid>",
+  "type": "identification_response",
+  "log": {
+    "message": "Iota identified",
+    "log_level": 0
+  },
+  "data": {
+    "accepted_profiles": "<uuid>,<uuid>,<uuid>,<uuid>,",
+    "denid_profiles": "<uuid>"
+  }
 }
 ```
 
 ---
+
 ### Client
+
 #### `REQ:`
+
 ```json
 {
-	"id": "<uuid>",
-	"type": "identification",
-	"log": {
-	    "message": "Client identifying",
-		"log_level": 0
-	},
-	"data": {
-		"iota_id": "<iota-id>",
-		"user_id": "<user-id>",
-		"private_key_hash": "<hex-sha265>"
-	}
+  "id": "<uuid>",
+  "type": "identification",
+  "log": {
+    "message": "Client identifying",
+    "log_level": 0
+  },
+  "data": {
+    "iota_id": "<iota-id>",
+    "user_id": "<user-id>",
+    "private_key_hash": "<hex-sha265>"
+  }
 }
 ```
+
 #### `RES:`
+
 ```json
 {
 	"id": "<uuid>",
@@ -71,18 +82,22 @@ Any message to the `Omikron` will be ignored until Identification.
 	    "message": "Client identified",
 		"log_level": 0
 	},
-	"data": {  
+	"data": {
 		"acceppted": boolean
 	}
 }
 ```
 
 ## Ping & Pong
+
 Ping comes from the `Client` or `Iota` and the `Omikron` returns a Pong.
 The `Ping` should contain the last ping,
 the `Pong` contains the last ping of the opposite.
+
 ### Iota
+
 #### REQ:
+
 ```json
 {
 	"id": "<uuid>",
@@ -91,12 +106,14 @@ the `Pong` contains the last ping of the opposite.
 	    "message": "Ping from Iota",
 		"log_level": -1
 	},
-	"data": {  
+	"data": {
 		"last_ping": long
 	}
 }
 ```
+
 #### RES:
+
 ```json
 {
 	"id": "<uuid>",
@@ -113,8 +130,11 @@ the `Pong` contains the last ping of the opposite.
 	}
 }
 ```
+
 ### Client
+
 #### `REQ:`
+
 ```json
 {
 	"id": "<uuid>",
@@ -128,7 +148,9 @@ the `Pong` contains the last ping of the opposite.
 	}
 }
 ```
+
 #### `RES:`
+
 ```json
 {
 	"id": "<uuid>",
@@ -137,32 +159,36 @@ the `Pong` contains the last ping of the opposite.
 	    "message": "Pong to Iota",
 		"log_level": -1
 	},
-	"data": {  
+	"data": {
 		"last_ping": long
 	}
 }
 ```
 
-
 # Calling
+
 ## Identification
+
 #### `REQ:`
+
 ```json
 {
-	"id": "<uuid>",
-	"type": "identification",
-	"log": {
-	    "message": "Client identifying",
-		"log_level": 0
-	},
-	"data": {
-		"call_id": "<call-id>",
-		"user_id": "<user-id>",
-		"private_key_hash": "<hex-sha265>"
-	}
+  "id": "<uuid>",
+  "type": "identification",
+  "log": {
+    "message": "Client identifying",
+    "log_level": 0
+  },
+  "data": {
+    "call_id": "<call-id>",
+    "user_id": "<user-id>",
+    "private_key_hash": "<hex-sha265>"
+  }
 }
 ```
-#### `RES:` 
+
+#### `RES:`
+
 ```json
 {
 	"id": "<uuid>",
@@ -171,7 +197,7 @@ the `Pong` contains the last ping of the opposite.
 	    "message": "Client identified",
 		"log_level": 0
 	},
-	"data": {  
+	"data": {
 		"acceppted": boolean,
 		"user_ids"{
 			"<user_id>": call_state,
@@ -180,15 +206,17 @@ the `Pong` contains the last ping of the opposite.
 	}
 }
 ```
+
 A call state can be
+
 ```typescript
-active,
-streaming,
-muted,
-deafed
+active, streaming, muted, deafed;
 ```
+
 ## When someone joins the call
+
 ##### `MSG:` Omikron -> all users
+
 ```json
 {
 	"id": "<uuid>",
@@ -202,12 +230,16 @@ deafed
 		"call_state": call_state,
 		"user_state": user_state
 	}
-	
+
 }
 ```
+
 ### All messages
+
 ## When someone changes their state
+
 ##### `MSG:` -> Omikron
+
 ```json
 {
 	"id": "<uuid>",
@@ -222,7 +254,9 @@ deafed
 	}
 }
 ```
+
 ##### `MSG:` Omikron -> Other clients
+
 ```json
 {
 	"id": "<uuid>",
