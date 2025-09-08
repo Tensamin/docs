@@ -26,26 +26,24 @@ When a message comes from an iota without a `sender-id` that the iota has access
     "log_level": 0
   },
   "data": {
-    "messages": [
-      {
-        "user": {
-          "avatar": true,
-          "display": true,
-          "timestamp": true
-        },
-        "body": {
-          "tint": "<hex color>",
-          "content": "<markdown (encrypted)>",
-          "files": [
-            {
-             "name": "<cool name>",
-              "id": "<uuid>",
-              "type": "[ image | image_top_right | file ]"
-            }
-          ]
-        }
+    {
+      "user": {
+        "avatar": true,
+        "display": true,
+        "timestamp": true
+      },
+      "body": {
+        "tint": "<hex color>",
+        "content": "<markdown (encrypted)>",
+        "files": [
+          {
+           "name": "<cool name>",
+            "id": "<uuid>",
+            "type": "[ image | image_top_right | file ]"
+          }
+        ]
       }
-    ]
+    }
   }
 }
 ```
@@ -103,27 +101,27 @@ When a message comes from an iota without a `sender-id` that the iota has access
 	},
 	"data": {
     	"messages": [
-		  {
-			"data": {
-				"timestamp": long, // UNIX Timestamp for time sent
-				"sent_by_self": true
-			},
-		    "user": {
-			  "avatar": true, // if not defined value is true | default: true
-			  "display": true,
-			  "timestamp": true,
-		    },
-		    "body": {
-			  "tint": "<hex color>", // 30%
-			  "content": "<markdown (encrypted)>",
-			  "files": [
-				{
-				  "name": "<cool name>",
-				  "id": "<uuid>",
-				  "type": "[ image | image_top_right | file ]"
-				}
-			  ]
-			}
+		    {
+			    "data": {
+			  	  "timestamp": long, // UNIX Timestamp for time sent
+			  	  "sent_by_self": true
+			    },
+		      "user": {
+			      "avatar": true, // if not defined value is true | default: true
+			      "display": true,
+			      "timestamp": true,
+		      },
+		      "body": {
+			    "tint": "<hex color>", // 30%
+			    "content": "<markdown (encrypted)>",
+			    "files": [
+			  	  {
+			  	    "name": "<cool name>",
+			  	    "id": "<uuid>",
+			  	    "type": "[ image | image_top_right | file ]"
+			  	  }
+			    ]
+			  }
 		  }
 		]
 	}
