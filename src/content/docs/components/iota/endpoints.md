@@ -26,22 +26,26 @@ When a message comes from an iota without a `sender-id` that the iota has access
     "log_level": 0
   },
   "data": {
-    "user": {
-      "avatar": true,
-      "display": true,
-      "timestamp": true
-    },
-    "body": {
-      "tint": "<hex color>",
-      "content": "<markdown (encrypted)>",
-      "files": [
-        {
-          "name": "<cool name>",
-          "id": "<uuid>",
-          "type": "[ image | image_top_right | file ]"
+    "messages": [
+      {
+        "user": {
+          "avatar": true,
+          "display": true,
+          "timestamp": true
+        },
+        "body": {
+          "tint": "<hex color>",
+          "content": "<markdown (encrypted)>",
+          "files": [
+            {
+             "name": "<cool name>",
+              "id": "<uuid>",
+              "type": "[ image | image_top_right | file ]"
+            }
+          ]
         }
-      ]
-    }
+      }
+    ]
   }
 }
 ```
