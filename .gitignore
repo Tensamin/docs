@@ -3,3 +3,4 @@ dist/
 node_modules/
 src/content/docs/.obsidian
 package-lock.json
+pnpm-lock.yaml
