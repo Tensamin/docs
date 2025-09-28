@@ -42,7 +42,7 @@ title: Endpoints
 }
 ```
 
-##### POST `/api/change/[ username | display | avatar | about | status ]/<uuid>`
+##### POST `/api/change/<uuid>`
 
 `REQ`
 
@@ -59,7 +59,7 @@ title: Endpoints
 {
   "type": "success",
   "log": {
-    "message": "Changed [ username | display | avatar | about | status ] for <uuid>",
+    "message": "Changed user",
     "log_level": 0
   }
 }
