@@ -8,6 +8,7 @@ title: Developer Options
 
 ## Options
 
-### enableLockScreenBypass
+**enableLockScreenBypass**
 
 - Adds the ability to bypass the fullscreen lock when a critical errors occurs
+- Bypassing the fullscreen lock can also be done using the bypassLockScreen command inside the developer console (`bypassLockScreen()`)

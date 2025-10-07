@@ -12,7 +12,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Update on methanium
         uses: appleboy/ssh-action@v1

@@ -15,7 +15,7 @@ Our version format is very simple:
 - #### X.Y.Z (1.0.0)
   - **X:** Stable Release Number
   - **Y:** Beta Release Number
-  - **Y:** Component Specific Release Number
+  - **Z:** Component Specific Release Number
 
 #### Example:
 

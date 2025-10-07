@@ -2,6 +2,8 @@
 title: Installation
 ---
 
+# OUTDATED!
+
 ### You need to run the [Iota.jar](https://tensamin.methanium.net/release/Iota.jar).
 
 This is a Selfhosted server that you can run locally or on a server.
