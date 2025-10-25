@@ -21,4 +21,4 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWD }}
           port: ${{ secrets.SSH_PORT }}
-          script: cd /home/${{ secrets.SSH_USER }}/Docs && git pull && pnpm install && pnpm build
+          script: cd /home/${{ secrets.SSH_USER }}/Docs && git pull && bun install && bun build

@@ -5,8 +5,10 @@ title: Introduction
 #### Tensamin is a privacy focused social media app
 
 [GitHub](https://github.com/tensamin)
+[Homepage](https://tensamin.net)
+[Status](https://status.tensamin.net)
+[App](https://app.tensamin.net)
 [Methanium](https://methanium.net)
-[Tensamin](https://tensamin.methanium.net)
 
 ## Development
 

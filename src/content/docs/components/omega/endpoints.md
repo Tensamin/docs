@@ -2,6 +2,8 @@
 title: Endpoints
 ---
 
+# OUTDATED!
+
 The `Omega` can be reached by HTTPS request from `Client` and `Iota`.
 `Omikron` servers establish a Secure Websocket when booting.
 
@@ -58,7 +60,7 @@ Retrieves the `Omikron` node currently associated with the `Iota` linked to the 
     "log_level": 0
   },
   "data": {
-    "omikron": "omikron.tensamin.methanium.net"
+    "omikron": "omikron.tensamin.net"
   }
 }
 ```
@@ -82,7 +84,7 @@ The client can input its `user-id` to find the `Omikron` where its `Iota` is con
     "log_level": 0
   },
   "data": {
-    "omikron": "omikron.tensamin.methanium.net"
+    "omikron": "omikron.tensamin.net"
   }
 }
 ```

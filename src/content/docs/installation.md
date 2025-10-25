@@ -2,7 +2,7 @@
 title: Installation
 ---
 
-# OUTDATED!
+# OUTDATED! - VERY OUTDATED!!!
 
 ### You need to run the [Iota.jar](https://tensamin.methanium.net/release/Iota.jar).
 

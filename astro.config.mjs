@@ -1,28 +1,31 @@
 // @ts-check
 import { defineConfig } from "astro/config";
+import starlightThemeObsidian from "starlight-theme-obsidian";
 import starlight from "@astrojs/starlight";
-import catppuccin from "@catppuccin/starlight";
 
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  base: "/docs/",
-  outDir: "dist/docs",
+  outDir: "dist",
   integrations: [
     starlight({
-      title: "Tensamin",
       plugins: [
-        catppuccin({
-          dark: { flavor: "mocha", accent: "lavender" },
-          light: { flavor: "latte", accent: "lavender" },
+        starlightThemeObsidian({
+          graph: false,
         }),
       ],
+      title: "Tensamin",
       social: [
         {
           icon: "github",
           label: "GitHub",
           href: "https://github.com/Tensamin",
+        },
+        {
+          icon: "external",
+          label: "Website",
+          href: "https://tensamin.net",
         },
       ],
       sidebar: [
