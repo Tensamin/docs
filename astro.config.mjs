@@ -3,6 +3,8 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import catppuccin from "@catppuccin/starlight";
 
+import mdx from "@astrojs/mdx";
+
 // https://astro.build/config
 export default defineConfig({
   base: "/docs/",
@@ -49,5 +51,6 @@ export default defineConfig({
         { label: "Legal", autogenerate: { directory: "legal" } },
       ],
     }),
+    mdx(),
   ],
 });
