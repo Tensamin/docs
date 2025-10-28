@@ -1,5 +1,6 @@
 ---
 title: Endpoints
+lastUpdated: 2025-10-28
 ---
 
 ## User Endpoints
@@ -110,94 +111,6 @@ title: Endpoints
   "log": {
     "message": "Changed keys for <uuid>",
     "log_level": 0
-  }
-}
-```
-
-##### POST `/api/register/options/<uuid>`
-
-`REQ`
-
-```json
-{
-  "private_key_hash": "<sha256 private key hash>"
-}
-```
-
-`RES`
-
-```json
-{
-  "type": "success",
-  "log": {
-    "message": "Got registration options for <uuid>",
-    "log_level": 2
-  },
-  "data": {
-    "options": "<json>",
-    "salt": "<base64 salt>"
-  }
-}
-```
-
-##### POST `/api/register/verify/<uuid>`
-
-`REQ`
-
-```json
-{
-  "private_key_hash": "<sha256 private key hash>",
-  "attestation": "idk yet"
-}
-```
-
-`RES`
-
-```json
-{
-  "type": "success",
-  "log": {
-    "message": "Verified <uuid>",
-    "log_level": 2
-  }
-}
-```
-
-##### GET `/api/login/options/<uuid>`
-
-```json
-{
-  "type": "success",
-  "log": {
-    "message": "Got login options for <uuid>",
-    "log_level": 2
-  },
-  "data": {
-    "options": "<json>",
-    "salt": "<base64 salt>",
-    "credential_id": "<base64 string>"
-  }
-}
-```
-
-##### POST `/api/login/verify/<uuid>`
-
-`REQ`
-
-```json
-{
-  "attestation": "<json>"
-}
-```
-
-`RES`
-
-```json
-{
-  "type": "success",
-  "log": {
-    "message": "Verified <uuid>",
-    "log_level": 2
   }
 }
 ```
